@@ -1,0 +1,54 @@
+project:
+  name: demo
+
+ollama:
+  url: http://127.0.0.1:11434/api/generate
+  model: jaahas/qwen3.5-uncensored:latest
+  temperature: 0.2
+  num_predict: 4096
+  num_ctx: 8192
+  keep_alive: 5m
+  timeout_seconds: 600
+
+ingest:
+  input_file: input/novel.txt
+  chapters_file: clean/chapters.jsonl
+
+bible:
+  output_file: bible/character_bible.json
+  state_dir: state
+  window_chars: 6000
+  merge_with_existing: true
+
+planner:
+  output_dir: plans
+  target_chars: 1200
+  overlap_chars: 500
+  snap_limit: 300
+  max_chunks: 1
+  narrator_name: 旁白
+  confidence_review_threshold: 0.7
+
+review:
+  output_dir: reports
+  min_confidence: 0.7
+  min_style_chars: 8
+
+tts:
+  backend: qwen3
+  model_dir: H:\model\Qwen3-TTS-12Hz-1.7B-Base
+  device: cuda:0
+  dtype: bfloat16
+  language: Chinese
+  refs_dir: refs
+  default_ref_audio: ""
+  default_ref_text: ""
+  auto_transcribe_ref: true
+  output_dir: audio_parts
+  batch_size: 1
+  max_items: 0
+
+audio:
+  output_dir: output
+  sample_rate: 24000
+

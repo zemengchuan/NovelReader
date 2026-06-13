@@ -1,0 +1,22 @@
+[project]
+name = "novelreader-v2"
+version = "0.1.0"
+description = "LLM-first Chinese novel audiobook planning and TTS pipeline"
+requires-python = ">=3.10"
+dependencies = [
+  "loguru>=0.7.2",
+  "pydantic>=2.7.0",
+  "PyYAML>=6.0.1",
+  "tqdm>=4.66.0"
+]
+
+[project.optional-dependencies]
+audio = [
+  "soundfile>=0.12.1",
+  "pydub>=0.25.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["novelreader_v2*"]
+
