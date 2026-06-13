@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 from scripts.run_step import setup_logging
 
 
-TEXT_PIPELINE = ["ingest", "bible", "planner", "review"]
+TEXT_PIPELINE = ["ingest", "graph_index", "context_retrieval", "planner", "review"]
 FULL_PIPELINE = TEXT_PIPELINE + ["tts", "audio"]
 
 

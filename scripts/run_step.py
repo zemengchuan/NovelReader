@@ -14,6 +14,8 @@ sys.path.insert(0, str(ROOT))
 STEPS = {
     "ingest": "novelreader_v2.ingest.main",
     "bible": "novelreader_v2.bible.main",
+    "graph_index": "novelreader_v2.graph_index.main",
+    "context_retrieval": "novelreader_v2.context_retrieval.main",
     "planner": "novelreader_v2.planner.main",
     "review": "novelreader_v2.review.main",
     "tts": "novelreader_v2.tts.main",

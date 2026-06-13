@@ -1,15 +1,34 @@
 project:
   name: demo
 
+graph_index:
+  # 测试时可以先只索引 1 个窗口；正式跑整章时改成 0。
+  window_chars: 2500
+  max_windows: 1
+
 planner:
   # 测试时建议先只跑 1 个 chunk，确认输出质量后再改成 0 跑整章。
   target_chars: 700
   overlap_chars: 400
   max_chunks: 1
+  coverage_retries: 2
+  source_span_max_chars: 180
 
 tts:
-  # 本地填写参考音频路径后再运行 tts。
+  # 本地填入参考音频路径后再运行 tts。qwen3_clone 使用参考音频克隆，不会把 style_prompt 直接读出来。
+  backend: qwen3_clone
   default_ref_audio: ""
+  default_ref_text: ""
+  voice_refs:
+    # 也可以给不同 speaker 配不同参考音频。
+    # 旁白:
+    #   ref_audio: H:\path\to\narrator.wav
+    #   ref_text: ""
+    # 叶临渊:
+    #   ref_audio: H:\path\to\male.wav
+    #   ref_text: ""
+  use_adapted_text: true
+  write_metadata: true
+  overwrite: false
   batch_size: 1
   max_items: 0
-

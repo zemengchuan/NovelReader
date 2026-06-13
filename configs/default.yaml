@@ -20,14 +20,38 @@ bible:
   window_chars: 6000
   merge_with_existing: true
 
+graph_index:
+  output_dir: graph
+  book_graph_file: graph/book_graph.json
+  window_chars: 3500
+  overlap_chars: 600
+  snap_limit: 300
+  max_windows: 0
+  num_predict: 4096
+  max_retries: 1
+
+context_retrieval:
+  output_dir: contexts
+  evidence_margin_chars: 700
+  max_characters: 8
+  max_relations: 8
+  max_events: 6
+  max_quotes: 8
+  max_evidence: 14
+
 planner:
   output_dir: plans
   target_chars: 1200
   overlap_chars: 500
   snap_limit: 300
-  max_chunks: 1
+  max_chunks: 0
   narrator_name: 旁白
   confidence_review_threshold: 0.7
+  num_ctx: 12288
+  num_predict: 4096
+  max_retries: 1
+  coverage_retries: 2
+  source_span_max_chars: 180
 
 review:
   output_dir: reports
@@ -35,7 +59,7 @@ review:
   min_style_chars: 8
 
 tts:
-  backend: qwen3
+  backend: qwen3_clone
   model_dir: H:\model\Qwen3-TTS-12Hz-1.7B-Base
   device: cuda:0
   dtype: bfloat16
@@ -44,6 +68,7 @@ tts:
   refs_dir: refs
   default_ref_audio: ""
   default_ref_text: ""
+  voice_refs: {}
   auto_transcribe_ref: true
   asr_backend: whisper
   whisper_model: small
@@ -51,6 +76,10 @@ tts:
   asr_device: auto
   ref_text_cache_dir: cache/ref_text
   x_vector_only_mode: false
+  use_adapted_text: true
+  use_style_instruct: true
+  write_metadata: true
+  overwrite: false
   output_dir: audio_parts
   batch_size: 1
   max_items: 0

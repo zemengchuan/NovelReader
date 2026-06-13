@@ -46,14 +46,17 @@ class PlanItem(BaseModel):
     chunk_id: int
     source_start: int = -1
     source_end: int = -1
+    span_ids: list[str] = Field(default_factory=list)
     speaker: str
     text: str
     kind: Literal["narration", "dialogue"] = "narration"
     emotion: str = ""
+    intensity: int = 3
     style_prompt: str
+    adapted_text: str = ""
     delivery: dict[str, str | int | float | bool | list[str]] = Field(default_factory=dict)
     pause_after_ms: int = 500
     confidence: float = 0.5
     reason: str = ""
+    evidence_ids: list[str] = Field(default_factory=list)
     needs_review: bool = False
-
