@@ -1,0 +1,15 @@
+project:
+  name: demo
+
+planner:
+  # 测试时建议先只跑 1 个 chunk，确认输出质量后再改成 0 跑整章。
+  target_chars: 700
+  overlap_chars: 400
+  max_chunks: 1
+
+tts:
+  # 本地填写参考音频路径后再运行 tts。
+  default_ref_audio: ""
+  batch_size: 1
+  max_items: 0
+

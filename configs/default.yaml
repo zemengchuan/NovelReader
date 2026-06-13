@@ -39,16 +39,27 @@ tts:
   model_dir: H:\model\Qwen3-TTS-12Hz-1.7B-Base
   device: cuda:0
   dtype: bfloat16
+  attn_implementation: sdpa
   language: Chinese
   refs_dir: refs
   default_ref_audio: ""
   default_ref_text: ""
   auto_transcribe_ref: true
+  asr_backend: whisper
+  whisper_model: small
+  asr_language: zh
+  asr_device: auto
+  ref_text_cache_dir: cache/ref_text
+  x_vector_only_mode: false
   output_dir: audio_parts
   batch_size: 1
   max_items: 0
+  max_new_tokens: 2048
+  temperature: 0.9
+  top_k: 50
+  top_p: 1.0
+  repetition_penalty: 1.05
 
 audio:
   output_dir: output
   sample_rate: 24000
-

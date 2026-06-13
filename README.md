@@ -34,5 +34,50 @@ docs/DECISIONS.md
 
 ## 当前状态
 
-这是 V2 干净项目骨架。旧项目 `H:\NovelReader` 只作为原型和可迁移代码来源，不再作为正式架构继续扩写。
+当前已实现最小可用链路：
 
+```text
+ingest -> bible -> planner -> review
+```
+
+已接入但未完整实测的后续链路：
+
+```text
+tts -> audio
+```
+
+旧项目 `H:\NovelReader` 只作为原型和可迁移代码来源，不再作为正式架构继续扩写。
+
+## 本地运行
+
+`projects/` 是本地数据目录，不进入 git。先创建本地项目：
+
+```powershell
+cd /d H:\NovelReaderV2
+mkdir projects\demo\input
+copy H:\NovelReader\projects\demo\input\novel.txt projects\demo\input\novel.txt
+copy examples\project_config.yaml projects\demo\config.yaml
+```
+
+运行文本规划链路：
+
+```powershell
+python scripts\run_pipeline.py --project projects\demo --chapter 001 --verbose
+```
+
+只重跑某一步：
+
+```powershell
+python scripts\run_step.py planner --project projects\demo --chapter 001 --verbose
+python scripts\run_step.py review --project projects\demo --chapter 001 --verbose
+```
+
+输出：
+
+```text
+projects/demo/clean/chapters.jsonl
+projects/demo/bible/character_bible.json
+projects/demo/state/001.chapter_state.json
+projects/demo/plans/001.plan.jsonl
+projects/demo/reports/001.review.md
+```
